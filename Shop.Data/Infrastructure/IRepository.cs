@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -36,13 +37,13 @@ namespace Shop.Data.Infrastructure
         //bool CheckContains(Expression<Func<T, bool>> predicate);
         
         //thêm một thực thể mới
-        void Add(T entity);
+        T Add(T entity);
 
         void Update(T entity);
 
-        void Delete(T entity);
+        T Delete(T entity);
 
-        void Delete(int id);
+        T Delete(int id);
 
         //func là 1 delegate lưu trữ các method anonymous
         //biểu thị một delegatemà là khá nhiều một con trỏ đến một phương thức 
@@ -54,11 +55,11 @@ namespace Shop.Data.Infrastructure
 
         T GetSingleByCondition(Expression<Func<T, bool>> expresstion, string[] include = null);
 
-        IQueryable<T> GetAll(string[] include = null);
+        IEnumerable<T> GetAll(string[] include = null);
 
-        IQueryable<T> GetMulti(Expression<Func<T, bool>> predicate, string[] includes = null);
+        IEnumerable<T> GetMulti(Expression<Func<T, bool>> predicate, string[] includes = null);
 
-        IQueryable<T> GetMultiPaging(Expression<Func<T, bool>> filter, out int total, int index = 0, int size = 50, string[] incllude = null);
+        IEnumerable<T> GetMultiPaging(Expression<Func<T, bool>> filter, out int total, int index = 0, int size = 50, string[] incllude = null);
 
         int Count(Expression<Func<T, bool>> where);
 
