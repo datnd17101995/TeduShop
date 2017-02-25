@@ -99,9 +99,11 @@ namespace Shop.Data.Infrastructure
 
         public virtual IQueryable<T> GetMulti(Expression<Func<T, bool>> predicate, string[] includes = null)
         {
+            //includes là chuỗi mà người ta muốn tìm trong csld để lấy về
             //HANDLE INCLUDES FOR ASSOCIATED OBJECTS IF APPLICABLE
             if (includes != null && includes.Count() > 0)
             {
+                //khai báo chuỗi query nếu includeko null thì thêm nó vào chuỗi tìm kiếm
                 var query = dataContext.Set<T>().Include(includes.First());
                 foreach (var include in includes.Skip(1))
                     query = query.Include(include);
