@@ -2,6 +2,7 @@
 using Shop.Data.Repositories;
 using Shop.Model.Models;
 using System.Collections.Generic;
+using System;
 
 namespace Shop.Service
 {
@@ -18,6 +19,8 @@ namespace Shop.Service
         IEnumerable<PostCategory> GetAllByParenrId(int parentId);
 
         PostCategory GetById(int Id);
+
+        void Save();
     }
 
     public class PostCategoryService : IPostCategoryService
@@ -54,6 +57,11 @@ namespace Shop.Service
         public PostCategory GetById(int Id)
         {
             return _postCategoryRepository.GetSingleById(Id);
+        }
+
+        public void Save()
+        {
+            _unitOfWork.Commit();
         }
 
         public void Update(PostCategory postCategory)
